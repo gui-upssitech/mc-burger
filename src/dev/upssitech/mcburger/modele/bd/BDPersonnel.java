@@ -1,5 +1,6 @@
 package dev.upssitech.mcburger.modele.bd;
 
+import dev.upssitech.mcburger.modele.profil.Client;
 import dev.upssitech.mcburger.modele.profil.Personnel;
 
 import java.util.HashMap;
@@ -15,16 +16,31 @@ public class BDPersonnel {
     }
 
     private final HashMap<Integer, Personnel> listePersonnel;
-    private int numClients;
+    private int numPersonnels;
 
     private BDPersonnel() {
         listePersonnel = new HashMap<>();
-        numClients = 0;
+        numPersonnels = 0;
     }
 
     public void addPersonnel(Personnel personnel) {
-        listePersonnel.put(numClients, personnel);
-        numClients++;
+        listePersonnel.put(numPersonnels, personnel);
+        numPersonnels++;
+    }
+
+    public int connexionClient(String login, String mdp) {
+        for(int numPersonnel : listePersonnel.keySet()) {
+            Personnel personnel = listePersonnel.get(numPersonnel);
+            if(personnel.verifierCorrespondanceProfil(login, mdp)) {
+                personnel.connexionProfil();
+                return numPersonnel;
+            }
+        }
+        return -1; // Retourn -1 si aucun compte correspondant n'est trouvé
+    }
+
+    public Personnel trouverPersonnel(int numPersonnel) {
+        return listePersonnel.getOrDefault(numPersonnel, null);
     }
 
     @Override

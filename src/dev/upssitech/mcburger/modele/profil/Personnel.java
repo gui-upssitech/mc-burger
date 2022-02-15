@@ -12,4 +12,19 @@ public class Personnel extends Profil {
     public void setGerant() {
         this.gerant = true;
     }
+
+    public boolean isGerant() {
+        return gerant;
+    }
+
+    @Override
+    public String toString() {
+        return "Personnel [" +
+                "gerant=" + gerant +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", login='" + login + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ']';
+    }
 }

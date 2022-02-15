@@ -1,7 +1,9 @@
 package dev.upssitech.mcburger.tests;
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
+import dev.upssitech.mcburger.controleur.ControlSIdentifier;
 import dev.upssitech.mcburger.modele.ProfilUtilisateur;
+import dev.upssitech.mcburger.vueconsole.BoundarySIdentifierClient;
 
 public class TestCasSIdentifierClient {
 

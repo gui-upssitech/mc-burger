@@ -2,7 +2,9 @@ package dev.upssitech.mcburger.tests;
 
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
+import dev.upssitech.mcburger.controleur.ControlSIdentifier;
 import dev.upssitech.mcburger.modele.ProfilUtilisateur;
+import dev.upssitech.mcburger.vueconsole.BoundarySIdentifierPersonnel;
 
 public class TestCasSIdentifierPersonnel {
 
@@ -19,7 +21,7 @@ public class TestCasSIdentifierPersonnel {
 		BoundarySIdentifierPersonnel boundarySIdentifierPersonnel = new BoundarySIdentifierPersonnel(
 				controlSIdentifier);
 		// Lancement du cas
-		int numPersonnel = boundarySIdentifierPersonnel.identifierPersonnel();
+		int numPersonnel = boundarySIdentifierPersonnel.sIdentifierPersonnel();
 
 		// Verification de la bonne r�alisation du cas
 		System.out.println("VERIFICATION");

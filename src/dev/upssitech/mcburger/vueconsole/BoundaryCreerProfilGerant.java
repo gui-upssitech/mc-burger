@@ -17,13 +17,15 @@ public class BoundaryCreerProfilGerant {
 
         // Etape 1 - Saisie des données
 
-        System.out.print("Veuillez entrer votre nom: ");
+        System.out.println("Création de compte Gérant\n===\n");
+
+        System.out.print("Nom: ");
         nom = Clavier.entrerClavierString();
 
-        System.out.print("Veuillez entrer votre prénom: ");
+        System.out.print("Prénom: ");
         prenom = Clavier.entrerClavierString();
 
-        System.out.print("Veuillez entrer votre mot de passe: ");
+        System.out.print("Mot de passe: ");
         mdp = Clavier.entrerClavierString();
 
         // Etape 2 - Création du profil

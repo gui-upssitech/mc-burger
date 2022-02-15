@@ -2,6 +2,8 @@ package dev.upssitech.mcburger.tests;
 
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
+import dev.upssitech.mcburger.controleur.ControlSIdentifier;
+import dev.upssitech.mcburger.controleur.ControlVerifierIdentification;
 import dev.upssitech.mcburger.modele.ProfilUtilisateur;
 
 public class TestCasVerifierIdentification {
@@ -14,7 +16,7 @@ public class TestCasVerifierIdentification {
 				"Victor", "gmv");
 		controlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Dupond",
 				"Hector", "cdh");
-		
+
 		ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 		int numGerant = controlSIdentifier.sIdentifier(
 				ProfilUtilisateur.GERANT, "Victor.Martin", "gmv");

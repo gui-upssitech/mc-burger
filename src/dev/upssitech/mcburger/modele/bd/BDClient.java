@@ -27,6 +27,21 @@ public class BDClient {
         numClients++;
     }
 
+    public int connexionClient(String login, String mdp) {
+        for(int numClient : listeClients.keySet()) {
+            Client client = listeClients.get(numClient);
+            if(client.verifierCorrespondanceProfil(login, mdp)) {
+                client.connexionProfil();
+                return numClient;
+            }
+        }
+        return -1; // Retourn -1 si aucun compte correspondant n'est trouvé
+    }
+
+    public Client trouverClient(int numClient) {
+        return listeClients.getOrDefault(numClient, null);
+    }
+
     @Override
     public String toString() {
         return "BDClient [" +
