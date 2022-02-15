@@ -1,0 +1,15 @@
+Dans cette première séance de TP vous devez implémenter et tester les cas :
+
+- "créer Profil" ,
+
+-  "s'identifier" ,
+
+- "vérifier identification".
+
+Pour faire ce travail, ci-dessous les documents :
+
+- Clavier.java : fournit un clavier que vous pouver utiliser afin que l'utilisateur puisse entrer des données,
+
+- testFonctionnelDesCas explique comment tester vos différents cas,
+
+- la conception détaillée des différents cas listés ci-dessus.
