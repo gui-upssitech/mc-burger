@@ -26,4 +26,13 @@ public abstract class Profil {
         return connecte;
     }
 
+    protected String toStringArgs() {
+        return
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", login='" + login + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", connecte='" + connecte + '\'';
+    }
+
 }

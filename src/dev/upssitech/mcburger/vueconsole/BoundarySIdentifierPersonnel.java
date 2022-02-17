@@ -2,7 +2,7 @@ package dev.upssitech.mcburger.vueconsole;
 
 import dev.upssitech.mcburger.Clavier;
 import dev.upssitech.mcburger.controleur.ControlSIdentifier;
-import dev.upssitech.mcburger.modele.ProfilUtilisateur;
+import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 
 public class BoundarySIdentifierPersonnel {
 

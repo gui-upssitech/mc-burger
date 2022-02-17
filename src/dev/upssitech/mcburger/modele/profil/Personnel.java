@@ -21,10 +21,7 @@ public class Personnel extends Profil {
     public String toString() {
         return "Personnel [" +
                 "gerant=" + gerant +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", login='" + login + '\'' +
-                ", mdp='" + mdp + '\'' +
+                ", " + toStringArgs() +
                 ']';
     }
 }

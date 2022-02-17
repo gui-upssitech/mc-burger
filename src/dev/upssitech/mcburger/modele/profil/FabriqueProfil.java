@@ -1,7 +1,5 @@
 package dev.upssitech.mcburger.modele.profil;
 
-import dev.upssitech.mcburger.modele.ProfilUtilisateur;
-
 public class FabriqueProfil {
 
     public static Profil creerProfil(ProfilUtilisateur profilUtilisateur, String nom, String prenom, String mdp) {

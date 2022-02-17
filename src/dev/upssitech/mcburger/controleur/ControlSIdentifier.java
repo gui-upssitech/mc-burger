@@ -1,6 +1,6 @@
 package dev.upssitech.mcburger.controleur;
 
-import dev.upssitech.mcburger.modele.ProfilUtilisateur;
+import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 import dev.upssitech.mcburger.modele.bd.BDClient;
 import dev.upssitech.mcburger.modele.bd.BDPersonnel;
 

@@ -6,7 +6,7 @@ import dev.upssitech.mcburger.modele.profil.Client;
 import dev.upssitech.mcburger.modele.profil.FabriqueProfil;
 import dev.upssitech.mcburger.modele.profil.Personnel;
 import dev.upssitech.mcburger.modele.profil.Profil;
-import dev.upssitech.mcburger.modele.ProfilUtilisateur;
+import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 
 public class ControlCreerProfil {
 

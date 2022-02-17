@@ -9,10 +9,7 @@ public class Client extends Profil {
     @Override
     public String toString() {
         return "Client [" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", login='" + login + '\'' +
-                ", mdp='" + mdp + '\'' +
+                toStringArgs() +
                 ']';
     }
 }
