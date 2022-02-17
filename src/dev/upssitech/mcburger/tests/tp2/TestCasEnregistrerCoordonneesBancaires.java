@@ -1,8 +1,11 @@
 package dev.upssitech.mcburger.tests.tp2;
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
+import dev.upssitech.mcburger.controleur.ControlEnregistrerCoordonneesBancaires;
 import dev.upssitech.mcburger.controleur.ControlSIdentifier;
+import dev.upssitech.mcburger.controleur.ControlVerifierCoordonneesBancaires;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
+import dev.upssitech.mcburger.vueconsole.BoundaryEnregistrerCoordonneesBancaires;
 
 public class TestCasEnregistrerCoordonneesBancaires {
 

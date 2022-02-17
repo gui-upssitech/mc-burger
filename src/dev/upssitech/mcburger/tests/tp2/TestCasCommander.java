@@ -1,11 +1,9 @@
 package dev.upssitech.mcburger.tests.tp2;
 
-import dev.upssitech.mcburger.controleur.ControlAjouterAlimentMenu;
-import dev.upssitech.mcburger.controleur.ControlCreerProfil;
-import dev.upssitech.mcburger.controleur.ControlSIdentifier;
-import dev.upssitech.mcburger.controleur.ControlVerifierIdentification;
+import dev.upssitech.mcburger.controleur.*;
 import dev.upssitech.mcburger.modele.aliment.AlimentMenu;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
+import dev.upssitech.mcburger.vueconsole.BoundaryEnregistrerCoordonneesBancaires;
 
 public class TestCasCommander {
 
@@ -15,24 +13,46 @@ public class TestCasCommander {
 		ControlAjouterAlimentMenu controlAjouterAlimentCarte = new ControlAjouterAlimentMenu(new ControlVerifierIdentification());
 		ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.HAMBURGER,
-				"baconBurger");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.HAMBURGER,
-				"chickenBurger");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.HAMBURGER,
-				"cheeseBurger");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.ACCOMPAGNEMENT,
-				"frites");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.ACCOMPAGNEMENT,
-				"pommesChips");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.BOISSON, "coca");
-		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.BOISSON,
-				"orangeBubbles");
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.HAMBURGER,
+				"baconBurger"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.HAMBURGER,
+				"chickenBurger"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.HAMBURGER,
+				"cheeseBurger"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.ACCOMPAGNEMENT,
+				"frites"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.ACCOMPAGNEMENT,
+				"pommesChips"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.BOISSON, "coca"
+		);
+		controlAjouterAlimentCarte.ajouterAliment(
+				AlimentMenu.BOISSON,
+				"orangeBubbles"
+		);
 
-		controlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Dupond",
-				"Hector", "cdh");
+		controlCreerProfil.creerProfil(
+				ProfilUtilisateur.CLIENT,
+				"Dupond",
+				"Hector",
+				"cdh"
+		);
+
 		int numClient = controlSIdentifier.sIdentifier(
-				ProfilUtilisateur.CLIENT, "Hector.Dupond", "cdh");
+				ProfilUtilisateur.CLIENT,
+				"Hector.Dupond",
+				"cdh"
+		);
 
 		// Initialisation controleur du cas & cas Inclus/etendu
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
