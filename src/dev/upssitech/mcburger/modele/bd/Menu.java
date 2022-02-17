@@ -45,6 +45,30 @@ public class Menu {
         listeBoisson.add(boisson);
     }
 
+    public List<Hamburger> getListeHamburger() {
+        return listeHamburger;
+    }
+
+    public List<Accompagnement> getListeAccompagnement() {
+        return listeAccompagnement;
+    }
+
+    public List<Boisson> getListeBoisson() {
+        return listeBoisson;
+    }
+
+    public Hamburger choixHamburger(int numHamburger) {
+        return listeHamburger.get(numHamburger);
+    }
+
+    public Accompagnement choixAccompagnement(int numAccompagnement) {
+        return listeAccompagnement.get(numAccompagnement);
+    }
+
+    public Boisson choixBoisson(int numBoisson) {
+        return listeBoisson.get(numBoisson);
+    }
+
     @Override
     public String toString() {
         return "Menu [" +

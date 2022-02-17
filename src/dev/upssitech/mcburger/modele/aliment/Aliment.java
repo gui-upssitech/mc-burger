@@ -11,6 +11,10 @@ public abstract class Aliment {
     }
 
     // Methods
+    public String getNom() {
+        return nom;
+    }
+
     public String toStringArgs() {
         return "nom='" + nom + "'";
     }

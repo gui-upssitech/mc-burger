@@ -3,6 +3,7 @@ package dev.upssitech.mcburger.tests.tp2;
 import dev.upssitech.mcburger.controleur.*;
 import dev.upssitech.mcburger.modele.aliment.AlimentMenu;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
+import dev.upssitech.mcburger.vueconsole.BoundaryCommander;
 import dev.upssitech.mcburger.vueconsole.BoundaryEnregistrerCoordonneesBancaires;
 
 public class TestCasCommander {

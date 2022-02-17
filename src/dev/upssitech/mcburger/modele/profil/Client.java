@@ -12,6 +12,10 @@ public class Client extends Profil {
         this.carteBancaire = new CarteBancaire(numeroCarte, dateCarte);
     }
 
+    public boolean verifierExistanceCarteBancaire() {
+        return carteBancaire != null;
+    }
+
     @Override
     public String toString() {
         return "Client [" +
