@@ -31,14 +31,23 @@ public class Commande {
         return numeroCommandeAttribuee;
     }
 
-    @Override
-    public String toString() {
-        return "Commande [" +
-                "numClient=" + numClient +
-                ", hamburger=" + hamburger +
-                ", accompagnement=" + accompagnement +
-                ", boisson=" + boisson +
-                ", numeroCommandeAttribuee=" + numeroCommandeAttribuee +
-                ']';
+    public int getNumClient() {
+        return numClient;
+    }
+
+    public Hamburger getHamburger() {
+        return hamburger;
+    }
+
+    public Accompagnement getAccompagnement() {
+        return accompagnement;
+    }
+
+    public Boisson getBoisson() {
+        return boisson;
+    }
+
+    public static void initialiserNumeroCommande() {
+        numeroCommande = 0;
     }
 }
