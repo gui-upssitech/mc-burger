@@ -71,10 +71,11 @@ public class BoundaryCommander {
         do {
             System.out.print("Votre choix: ");
             id = Clavier.entrerClavierInt();
-            if(id < 0 || id >= liste.size())
+            if(id < 1 || id > liste.size())
                 System.out.println("Choix invalide");
-        } while(id < 0 || id >= liste.size());
+        } while(id < 1 || id > liste.size());
 
-        return id;
+        return id - 1;
     }
+
 }
