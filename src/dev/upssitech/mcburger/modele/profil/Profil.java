@@ -32,7 +32,19 @@ public abstract class Profil {
                 ", prenom='" + prenom + '\'' +
                 ", login='" + login + '\'' +
                 ", mdp='" + mdp + '\'' +
-                ", connecte='" + connecte + '\'';
+                ", connecte=" + connecte;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profil profil = (Profil) o;
+        return
+                connecte == profil.connecte &&
+                nom.equals(profil.nom) &&
+                prenom.equals(profil.prenom) &&
+                login.equals(profil.login) &&
+                mdp.equals(profil.mdp);
+    }
 }

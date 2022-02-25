@@ -1,5 +1,7 @@
 package dev.upssitech.mcburger.modele.profil;
 
+import java.util.Objects;
+
 public class Client extends Profil {
 
     private CarteBancaire carteBancaire;
@@ -22,5 +24,17 @@ public class Client extends Profil {
                 "carteBancaire=" + carteBancaire +
                 ", " + toStringArgs() +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean eq = super.equals(o);
+
+        if(eq) {
+            Client c = (Client) o;
+            eq = Objects.equals(carteBancaire, c.carteBancaire);
+        }
+
+        return eq;
     }
 }
