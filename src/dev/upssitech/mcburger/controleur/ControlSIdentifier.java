@@ -9,7 +9,7 @@ public class ControlSIdentifier {
     public int sIdentifier(ProfilUtilisateur profilUtilisateur, String login, String mdp) {
         return switch(profilUtilisateur) {
             case CLIENT -> BDClient.getInstance().connexionClient(login, mdp);
-            default -> BDPersonnel.getInstance().connexionClient(login, mdp);
+            default -> BDPersonnel.getInstance().connexionPersonnel(login, mdp);
         };
     }
 

@@ -50,4 +50,15 @@ public class Commande {
     public static void initialiserNumeroCommande() {
         numeroCommande = 0;
     }
+
+    @Override
+    public String toString() {
+        return "Commande [" +
+                "numClient=" + numClient +
+                ", hamburger=" + hamburger +
+                ", accompagnement=" + accompagnement +
+                ", boisson=" + boisson +
+                ", numeroCommandeAttribuee=" + numeroCommandeAttribuee +
+                ']';
+    }
 }

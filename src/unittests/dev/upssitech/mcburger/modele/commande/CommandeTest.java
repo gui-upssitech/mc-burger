@@ -26,6 +26,7 @@ class CommandeTest {
         Assumptions.assumeTrue(accompagnement != null);
         Assumptions.assumeTrue(boisson != null);
 
+        Commande.initialiserNumeroCommande();
         commande = new Commande(numClient, hamburger, accompagnement, boisson);
     }
 

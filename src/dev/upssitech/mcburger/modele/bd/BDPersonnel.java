@@ -1,6 +1,5 @@
 package dev.upssitech.mcburger.modele.bd;
 
-import dev.upssitech.mcburger.modele.profil.Client;
 import dev.upssitech.mcburger.modele.profil.Personnel;
 
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class BDPersonnel {
         numPersonnels++;
     }
 
-    public int connexionClient(String login, String mdp) {
+    public int connexionPersonnel(String login, String mdp) {
         for(int numPersonnel : listePersonnel.keySet()) {
             Personnel personnel = listePersonnel.get(numPersonnel);
             if(personnel.verifierCorrespondanceProfil(login, mdp)) {
