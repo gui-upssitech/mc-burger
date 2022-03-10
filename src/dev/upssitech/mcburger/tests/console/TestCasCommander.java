@@ -1,17 +1,17 @@
-package dev.upssitech.mcburger.tests.tp2;
+package dev.upssitech.mcburger.tests.console;
 
 import dev.upssitech.mcburger.controleur.*;
 import dev.upssitech.mcburger.modele.aliment.AlimentMenu;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
-import dev.upssitech.mcburger.vueconsole.BoundaryCommander;
-import dev.upssitech.mcburger.vueconsole.BoundaryEnregistrerCoordonneesBancaires;
+import dev.upssitech.mcburger.vue.console.BoundaryCommander;
+import dev.upssitech.mcburger.vue.console.BoundaryEnregistrerCoordonneesBancaires;
 
 public class TestCasCommander {
 
 	public static void main(String[] args) {
 		// Mise en place de l'environnement
 		ControlCreerProfil controlCreerProfil = new ControlCreerProfil();
-		ControlAjouterAlimentMenu controlAjouterAlimentCarte = new ControlAjouterAlimentMenu(new ControlVerifierIdentification());
+		ControlAjouterAlimentMenu controlAjouterAlimentCarte = new ControlAjouterAlimentMenu();
 		ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 
 		controlAjouterAlimentCarte.ajouterAliment(
@@ -58,14 +58,13 @@ public class TestCasCommander {
 		// Initialisation controleur du cas & cas Inclus/etendu
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
 		ControlVerifierCoordonneesBancaires controlVerifierCoordonneesBancaire = new ControlVerifierCoordonneesBancaires();
-		ControlEnregistrerCoordonneesBancaires controlEnregistrerCoordonneesBancaires = new ControlEnregistrerCoordonneesBancaires(controlVerifierCoordonneesBancaire);
+		ControlEnregistrerCoordonneesBancaires controlEnregistrerCoordonneesBancaires = new ControlEnregistrerCoordonneesBancaires();
 
 		// Initialisation vue du cas & cas Inclus/etendu
 		BoundaryEnregistrerCoordonneesBancaires boundaryEnregistrerCoordonneesBancaires = new BoundaryEnregistrerCoordonneesBancaires(
 				controlEnregistrerCoordonneesBancaires);
 		BoundaryCommander boundaryCommander = new BoundaryCommander(
-				new ControlCommander(
-						controlVerifierIdentification),
+				new ControlCommander(),
 				boundaryEnregistrerCoordonneesBancaires);
 
 		// Lancement du cas

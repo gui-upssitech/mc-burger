@@ -8,7 +8,7 @@ import dev.upssitech.mcburger.modele.profil.Personnel;
 
 public class ControlVerifierIdentification {
 
-    public boolean verifierIdentification(ProfilUtilisateur profilUtilisateur, int numeroProfil) {
+    public static boolean verifierIdentification(ProfilUtilisateur profilUtilisateur, int numeroProfil) {
         switch (profilUtilisateur) {
             case CLIENT -> {
                 Client client = BDClient.getInstance().trouverClient(numeroProfil);

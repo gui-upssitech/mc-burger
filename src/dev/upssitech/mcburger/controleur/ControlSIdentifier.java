@@ -6,14 +6,14 @@ import dev.upssitech.mcburger.modele.bd.BDPersonnel;
 
 public class ControlSIdentifier {
 
-    public int sIdentifier(ProfilUtilisateur profilUtilisateur, String login, String mdp) {
+    public static int sIdentifier(ProfilUtilisateur profilUtilisateur, String login, String mdp) {
         return switch(profilUtilisateur) {
             case CLIENT -> BDClient.getInstance().connexionClient(login, mdp);
             default -> BDPersonnel.getInstance().connexionPersonnel(login, mdp);
         };
     }
 
-    public String visualiserBDUtilisateur() {
+    public static String visualiserBDUtilisateur() {
         return BDPersonnel.getInstance() + "\n" + BDClient.getInstance() + "\n";
     }
 

@@ -1,4 +1,4 @@
-package dev.upssitech.mcburger.vueconsole;
+package dev.upssitech.mcburger.vue.console;
 
 import dev.upssitech.mcburger.Clavier;
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;

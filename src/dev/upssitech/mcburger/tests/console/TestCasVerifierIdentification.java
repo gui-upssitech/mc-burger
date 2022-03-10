@@ -1,4 +1,4 @@
-package dev.upssitech.mcburger.tests.tp1;
+package dev.upssitech.mcburger.tests.console;
 
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;

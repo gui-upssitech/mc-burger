@@ -1,10 +1,10 @@
-package dev.upssitech.mcburger.tests.tp1;
+package dev.upssitech.mcburger.tests.console;
 
 
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
 import dev.upssitech.mcburger.controleur.ControlSIdentifier;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
-import dev.upssitech.mcburger.vueconsole.BoundarySIdentifierPersonnel;
+import dev.upssitech.mcburger.vue.console.BoundarySIdentifierPersonnel;
 
 public class TestCasSIdentifierPersonnel {
 

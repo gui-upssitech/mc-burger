@@ -1,6 +1,6 @@
-package dev.upssitech.mcburger.tests.tp1;
+package dev.upssitech.mcburger.tests.console;
 
-import dev.upssitech.mcburger.vueconsole.BoundaryCreerProfilGerant;
+import dev.upssitech.mcburger.vue.console.BoundaryCreerProfilGerant;
 import dev.upssitech.mcburger.controleur.ControlCreerProfil;
 
 public class TestCasCreerProfilGerant {

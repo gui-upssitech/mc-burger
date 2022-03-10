@@ -1,4 +1,4 @@
-package dev.upssitech.mcburger.tests.tp2;
+package dev.upssitech.mcburger.tests.console;
 
 
 import dev.upssitech.mcburger.controleur.ControlAjouterAlimentMenu;
@@ -6,7 +6,7 @@ import dev.upssitech.mcburger.controleur.ControlCreerProfil;
 import dev.upssitech.mcburger.controleur.ControlSIdentifier;
 import dev.upssitech.mcburger.controleur.ControlVerifierIdentification;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
-import dev.upssitech.mcburger.vueconsole.BoundaryAjouterAlimentMenu;
+import dev.upssitech.mcburger.vue.console.BoundaryAjouterAlimentMenu;
 
 public class TestCasAjouterAlimentMenu {
 
@@ -24,7 +24,7 @@ public class TestCasAjouterAlimentMenu {
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
 
 		// Initialisation controleur du cas
-		ControlAjouterAlimentMenu controlAjouterAlimentMenu = new ControlAjouterAlimentMenu(controlVerifierIdentification);
+		ControlAjouterAlimentMenu controlAjouterAlimentMenu = new ControlAjouterAlimentMenu();
 		// Initialisation vue du cas
 		BoundaryAjouterAlimentMenu boundaryAjouterAlimentMenu = new BoundaryAjouterAlimentMenu(controlAjouterAlimentMenu);
 
