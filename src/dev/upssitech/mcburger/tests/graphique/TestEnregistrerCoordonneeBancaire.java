@@ -1,10 +1,10 @@
-package testgraphique;
+package dev.upssitech.mcburger.tests.graphique;
 
 import javax.swing.JFrame;
 
-import controleur.ControlEnregistrerCoordonneesBancaires;
-import controleur.ControlVerifierCoordonneesBancaires;
-import vuegraphique.PanEnregistrerCoordonneesBancaires;
+import dev.upssitech.mcburger.controleur.ControlEnregistrerCoordonneesBancaires;
+import dev.upssitech.mcburger.controleur.ControlVerifierCoordonneesBancaires;
+import dev.upssitech.mcburger.vue.graphique.PanEnregistrerCoordonneesBancaires;
 
 public class TestEnregistrerCoordonneeBancaire {
 
@@ -21,11 +21,11 @@ public class TestEnregistrerCoordonneeBancaire {
 		fenetre.setVisible(true);
 		fenetre.setSize(800,400);
 
-		 PanEnregistrerCoordonneesBancaires panTest = new
-		 PanEnregistrerCoordonneesBancaires(controlEnregistrerCoordonneesBancaires);
+		 PanEnregistrerCoordonneesBancaires panTest = new PanEnregistrerCoordonneesBancaires(controlEnregistrerCoordonneesBancaires);
+
 		 fenetre.setContentPane(panTest);
-		 panTest.initialisation();
-		 panTest.enregistrerCoordonneesBancaires(1);
+		 //panTest.initialisation();
+		 panTest.enregistrerCoordonneesBancaires(1, carteValide -> System.out.println(carteValide));
 		 panTest.setVisible(true);
 		 fenetre.repaint();
 	}

@@ -1,6 +1,7 @@
 package dev.upssitech.mcburger.vue.graphique;
 
 import dev.upssitech.mcburger.controleur.ControlCommander;
+import dev.upssitech.mcburger.controleur.ControlEnregistrerCoordonneesBancaires;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.List;
  * author: Guillaume Roussin
  * date: 10/03/2022
  */
-public class PanCommander extends JPanel {
+public class PanCommander extends JPanel implements PanEnregistrerCoordonneesBancaires.IUseEnregistrerCoordonneesBancaires {
 
     // Attributes
     private static final String id = "COMMANDER";
@@ -27,11 +28,14 @@ public class PanCommander extends JPanel {
     private final Font policeParagraphe = new Font("Calibri", Font.ITALIC, 16);
 
     // ComboBox
-    JComboBox<String> comboBoxHamburger, comboBoxAccompagnement, comboBoxBoisson;
+    private Box boxPrincipale;
+    private final Box boxMiseEnPageNumeroCommande = Box.createVerticalBox();
+    private final JLabel numeroCommande = new JLabel();
+    private JComboBox<String> comboBoxHamburger, comboBoxAccompagnement, comboBoxBoisson;
 
     // Constructor
-    public PanCommander(ControlCommander controlCommander) {
-        this.panEnregistrerCoordonneesBancaires = new PanEnregistrerCoordonneesBancaires();
+    public PanCommander(ControlCommander controlCommander, PanEnregistrerCoordonneesBancaires panEnregistrerCoordonneesBancaires) {
+        this.panEnregistrerCoordonneesBancaires = panEnregistrerCoordonneesBancaires;
         this.controlCommander = controlCommander;
         initialisation();
     }
@@ -50,30 +54,54 @@ public class PanCommander extends JPanel {
         comboBoxHamburger = new JComboBox<>();
         comboBoxHamburger.addActionListener(e -> numeroHamburger = comboBoxHamburger.getSelectedIndex());
 
-        //comboBoxAccompagnement = new JComboBox<>();
-        //comboBoxAccompagnement.addActionListener(e -> nu);
+        comboBoxAccompagnement = new JComboBox<>();
+        comboBoxAccompagnement.addActionListener(e -> numeroAccompagnement = comboBoxAccompagnement.getSelectedIndex());
+
+        comboBoxBoisson = new JComboBox<>();
+        comboBoxBoisson.addActionListener(e -> numeroBoisson = comboBoxBoisson.getSelectedIndex());
 
         // Declaration et creation des Button
+        JButton validerCommande = new JButton();
+
+        validerCommande.setText("Valider");
+        validerCommande.addActionListener(e -> {
+            if(numeroHamburger != 0 && numeroAccompagnement != 0 && numeroBoisson != 0) {
+                validationCartePayement();
+            }
+        });
         // Declaration et creation des TextArea
         // Declaration et creation des Labels
         JLabel texteCommander = new JLabel("Votre menu");
         texteCommander.setFont(policeTitre);
 
-        JLabel texteHamburger = new JLabel("Choisissez votre Hamburger");
-        texteHamburger.setFont(policeParagraphe);
-
         // mise en page : placements des differents elements graphiques dans des Box
-        Box boxPrincipale = Box.createVerticalBox();
-        Box boxChoixHamburger = Box.createHorizontalBox();
+        boxPrincipale = Box.createVerticalBox();
+        Box boxValiderChoix = Box.createVerticalBox();
 
-        boxChoixHamburger.add(texteHamburger);
-        boxChoixHamburger.add(Box.createRigidArea(new Dimension(10, 0)));
-        boxChoixHamburger.add(comboBoxHamburger);
+        JLabel texteNumeroCommandeTitre = new JLabel("Votre commande");
+        texteNumeroCommandeTitre.setFont(policeTitre);
+
+        boxMiseEnPageNumeroCommande.add(texteNumeroCommandeTitre);
+        boxMiseEnPageNumeroCommande.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        numeroCommande.setFont(policeParagraphe);
+        boxMiseEnPageNumeroCommande.add(numeroCommande);
+
+        this.add(boxMiseEnPageNumeroCommande);
 
         // mise en page : placements des differentes box dans une box principale
         boxPrincipale.add(texteCommander);
         boxPrincipale.add(Box.createRigidArea(new Dimension(0, 30)));
-        boxPrincipale.add(boxChoixHamburger);
+
+        boxPrincipale.add(createChoiceBox("Choisissez votre Hamburger", comboBoxHamburger));
+        boxPrincipale.add(Box.createRigidArea(new Dimension(0, 10)));
+        boxPrincipale.add(createChoiceBox("Choisissez votre Accompagnement", comboBoxAccompagnement));
+        boxPrincipale.add(Box.createRigidArea(new Dimension(0, 10)));
+        boxPrincipale.add(createChoiceBox("Choisissez votre Boisson", comboBoxBoisson));
+
+        boxValiderChoix.add(validerCommande);
+        boxPrincipale.add(Box.createRigidArea(new Dimension(0, 10)));
+        boxPrincipale.add(boxValiderChoix);
 
         // mise en page : ajout de la box principale dans le panel
         this.add(boxPrincipale);
@@ -82,21 +110,69 @@ public class PanCommander extends JPanel {
     public void commander( int numClient ) {
         this.numClient = numClient;
 
+        boxPrincipale.setVisible(true);
+        boxMiseEnPageNumeroCommande.setVisible(false);
+
         if(controlCommander.verifierIdentification(numClient)) {
             affichageMenu();
         }
 
     }
 
+    @Override
+    public void retourEnregistrerCoordonneesBancaire(boolean carteValide) {
+        this.panEnregistrerCoordonneesBancaires.setVisible(false);
+        if(carteValide) this.enregistrerCommande(carteValide);
+    }
+
+    // Private methods
+
+    private void validationCartePayement() {
+        boolean carteRenseignee = controlCommander.verifierExistanceCarteBancaire(numClient);
+        if (!carteRenseignee) {
+            this.setVisible(false);
+            this.repaint();
+            panEnregistrerCoordonneesBancaires.enregistrerCoordonneesBancaires(numClient, this);
+        } else
+            this.enregistrerCommande(carteRenseignee);
+    }
+
+    private void enregistrerCommande(boolean carteRenseignee) {
+        if (carteRenseignee) {
+            int numCommande = controlCommander.enregistrerCommande(numClient, numeroHamburger,
+                    numeroAccompagnement, numeroBoisson);
+            numeroCommande.setText("Votre numero est : " + numCommande);
+        }
+        this.setVisible(true);
+
+        boxPrincipale.setVisible(false);
+        boxMiseEnPageNumeroCommande.setVisible(true);
+
+        this.repaint();
+    }
+
     private void affichageMenu() {
         setComboBoxContent(comboBoxHamburger, controlCommander.donnerListeHamburger());
-        //setComboBoxContent(comboBoxAccompagnement, ControlCommander.donnerListeAccompagnement());
-        //setComboBoxContent(comboBoxBoisson, ControlCommander.donnerListeBoisson());
+        setComboBoxContent(comboBoxAccompagnement, controlCommander.donnerListeAccompagnement());
+        setComboBoxContent(comboBoxBoisson, controlCommander.donnerListeBoisson());
     }
 
     private void setComboBoxContent(JComboBox<String> comboBox, List<String> list) {
         comboBox.removeAllItems();
         comboBox.addItem("");
         for(String s : list) comboBox.addItem(s);
+    }
+
+    private Box createChoiceBox(String titre, JComboBox<String> comboBox) {
+        Box boxChoix = Box.createHorizontalBox();
+        JLabel texte = new JLabel(titre);
+
+        texte.setFont(policeParagraphe);
+
+        boxChoix.add(texte);
+        boxChoix.add(Box.createRigidArea(new Dimension(10, 0)));
+        boxChoix.add(comboBox);
+
+        return boxChoix;
     }
 }

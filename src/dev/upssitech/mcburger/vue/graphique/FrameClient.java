@@ -1,6 +1,8 @@
 package dev.upssitech.mcburger.vue.graphique;
 
 import dev.upssitech.mcburger.controleur.ControlCommander;
+import dev.upssitech.mcburger.controleur.ControlEnregistrerCoordonneesBancaires;
+import dev.upssitech.mcburger.controleur.ControlVerifierCoordonneesBancaires;
 import dev.upssitech.mcburger.controleur.ControlVerifierIdentification;
 
 import javax.swing.*;
@@ -27,6 +29,7 @@ public class FrameClient extends JFrame {
     private final PanCommander panCommander;
     private final PanModifierProfil panModifierProfil;
     private final PanHistorique panHistorique;
+    private final PanEnregistrerCoordonneesBancaires panEnregistrerCoordonneesBancaires;
 
     // Constructor
     public FrameClient(int numClient) {
@@ -35,7 +38,12 @@ public class FrameClient extends JFrame {
         ControlVerifierIdentification verifierIdentification = new ControlVerifierIdentification();
         ControlCommander controlCommander = new ControlCommander(verifierIdentification);
 
-        this.panCommander = new PanCommander(controlCommander);
+        ControlVerifierCoordonneesBancaires verifierCoordonneesBancaires = new ControlVerifierCoordonneesBancaires();
+        ControlEnregistrerCoordonneesBancaires enregistrerCoordonneesBancaires = new ControlEnregistrerCoordonneesBancaires(verifierCoordonneesBancaires);
+
+        this.panEnregistrerCoordonneesBancaires = new PanEnregistrerCoordonneesBancaires(enregistrerCoordonneesBancaires);
+
+        this.panCommander = new PanCommander(controlCommander, panEnregistrerCoordonneesBancaires);
         this.panModifierProfil = new PanModifierProfil();
         this.panHistorique = new PanHistorique();
 
@@ -57,6 +65,7 @@ public class FrameClient extends JFrame {
     private void initialisationLayout() {
         panContents.setLayout(cartes);
         panContents.add(panCommander, panCommander.getId());
+        panContents.add(panEnregistrerCoordonneesBancaires, panEnregistrerCoordonneesBancaires.getId());
         panContents.add(panModifierProfil, panModifierProfil.getId());
         panContents.add(panHistorique, panHistorique.getId());
 
