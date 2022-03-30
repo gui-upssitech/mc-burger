@@ -24,7 +24,7 @@ public class TestCasAjouterAlimentMenu {
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
 
 		// Initialisation controleur du cas
-		ControlAjouterAlimentMenu controlAjouterAlimentMenu = new ControlAjouterAlimentMenu();
+		ControlAjouterAlimentMenu controlAjouterAlimentMenu = new ControlAjouterAlimentMenu(controlVerifierIdentification);
 		// Initialisation vue du cas
 		BoundaryAjouterAlimentMenu boundaryAjouterAlimentMenu = new BoundaryAjouterAlimentMenu(controlAjouterAlimentMenu);
 

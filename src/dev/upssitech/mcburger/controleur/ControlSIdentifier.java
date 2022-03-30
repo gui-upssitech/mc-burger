@@ -6,15 +6,22 @@ import dev.upssitech.mcburger.modele.bd.BDPersonnel;
 
 public class ControlSIdentifier {
 
-    public static int sIdentifier(ProfilUtilisateur profilUtilisateur, String login, String mdp) {
-        return switch(profilUtilisateur) {
-            case CLIENT -> BDClient.getInstance().connexionClient(login, mdp);
-            default -> BDPersonnel.getInstance().connexionPersonnel(login, mdp);
-        };
+    private final BDClient bdClient;
+    private final BDPersonnel bdPersonnel;
+
+    public ControlSIdentifier() {
+        bdClient = BDClient.getInstance();
+        bdPersonnel = BDPersonnel.getInstance();
     }
 
-    public static String visualiserBDUtilisateur() {
-        return BDPersonnel.getInstance() + "\n" + BDClient.getInstance() + "\n";
+    public int sIdentifier(ProfilUtilisateur profilUtilisateur, String login, String mdp) {
+        return (profilUtilisateur == ProfilUtilisateur.CLIENT)
+            ? bdClient.connexionClient(login, mdp)
+            : bdPersonnel.connexionPersonnel(login, mdp);
+    }
+
+    public String visualiserBDUtilisateur() {
+        return bdPersonnel + "\n" + bdClient + "\n";
     }
 
 }

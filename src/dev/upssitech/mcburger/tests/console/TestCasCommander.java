@@ -11,7 +11,7 @@ public class TestCasCommander {
 	public static void main(String[] args) {
 		// Mise en place de l'environnement
 		ControlCreerProfil controlCreerProfil = new ControlCreerProfil();
-		ControlAjouterAlimentMenu controlAjouterAlimentCarte = new ControlAjouterAlimentMenu();
+		ControlAjouterAlimentMenu controlAjouterAlimentCarte = new ControlAjouterAlimentMenu(new ControlVerifierIdentification());
 		ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 
 		controlAjouterAlimentCarte.ajouterAliment(
@@ -58,13 +58,13 @@ public class TestCasCommander {
 		// Initialisation controleur du cas & cas Inclus/etendu
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
 		ControlVerifierCoordonneesBancaires controlVerifierCoordonneesBancaire = new ControlVerifierCoordonneesBancaires();
-		ControlEnregistrerCoordonneesBancaires controlEnregistrerCoordonneesBancaires = new ControlEnregistrerCoordonneesBancaires();
+		ControlEnregistrerCoordonneesBancaires controlEnregistrerCoordonneesBancaires = new ControlEnregistrerCoordonneesBancaires(controlVerifierCoordonneesBancaire);
 
 		// Initialisation vue du cas & cas Inclus/etendu
 		BoundaryEnregistrerCoordonneesBancaires boundaryEnregistrerCoordonneesBancaires = new BoundaryEnregistrerCoordonneesBancaires(
 				controlEnregistrerCoordonneesBancaires);
 		BoundaryCommander boundaryCommander = new BoundaryCommander(
-				new ControlCommander(),
+				new ControlCommander(controlVerifierIdentification),
 				boundaryEnregistrerCoordonneesBancaires);
 
 		// Lancement du cas

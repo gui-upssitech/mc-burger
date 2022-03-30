@@ -10,21 +10,29 @@ import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 
 public class ControlCreerProfil {
 
-    public static void creerProfil(ProfilUtilisateur profilUtilisateur, String nom, String prenom, String mdp) {
+    private final BDPersonnel bdPersonnel;
+    private final BDClient bdClient;
+
+    public ControlCreerProfil() {
+        bdPersonnel = BDPersonnel.getInstance();
+        bdClient = BDClient.getInstance();
+    }
+
+    public void creerProfil(ProfilUtilisateur profilUtilisateur, String nom, String prenom, String mdp) {
 
         // Etape 1 - Création du profil
         Profil profil = FabriqueProfil.creerProfil(profilUtilisateur, nom, prenom, mdp);
 
         // Etape 2 - Ajout à la base de données
         if (profilUtilisateur == ProfilUtilisateur.CLIENT) {
-            BDClient.getInstance().addClient((Client) profil);
+            bdClient.addClient((Client) profil);
         } else {
-            BDPersonnel.getInstance().addPersonnel((Personnel) profil);
+            bdPersonnel.addPersonnel((Personnel) profil);
         }
 
     }
 
-    public static String visualiserBDUtilisateur() {
-        return BDPersonnel.getInstance() + "\n" + BDClient.getInstance() + "\n";
+    public String visualiserBDUtilisateur() {
+        return bdPersonnel + "\n" + bdClient + "\n";
     }
 }

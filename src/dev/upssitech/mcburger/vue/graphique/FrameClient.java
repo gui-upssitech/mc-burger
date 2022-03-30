@@ -1,5 +1,8 @@
 package dev.upssitech.mcburger.vue.graphique;
 
+import dev.upssitech.mcburger.controleur.ControlCommander;
+import dev.upssitech.mcburger.controleur.ControlVerifierIdentification;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -29,7 +32,10 @@ public class FrameClient extends JFrame {
     public FrameClient(int numClient) {
         this.numClient = numClient;
 
-        this.panCommander = new PanCommander();
+        ControlVerifierIdentification verifierIdentification = new ControlVerifierIdentification();
+        ControlCommander controlCommander = new ControlCommander(verifierIdentification);
+
+        this.panCommander = new PanCommander(controlCommander);
         this.panModifierProfil = new PanModifierProfil();
         this.panHistorique = new PanHistorique();
 

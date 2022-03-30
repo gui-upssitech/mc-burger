@@ -14,8 +14,11 @@ import dev.upssitech.mcburger.vue.graphique.FrameClient;
 public class TestEcranClient {
 
     public static void main(String[] args) {
-        ControlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Dupont", "Jean", "cjd");
-        int numClient = ControlSIdentifier.sIdentifier(ProfilUtilisateur.CLIENT, "Jean.Dupont", "cjd");
+        ControlCreerProfil controlCreerProfil = new ControlCreerProfil();
+        ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
+
+        controlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Dupont", "Jean", "cjd");
+        int numClient = controlSIdentifier.sIdentifier(ProfilUtilisateur.CLIENT, "Jean.Dupont", "cjd");
 
         new FrameClient(numClient);
     }

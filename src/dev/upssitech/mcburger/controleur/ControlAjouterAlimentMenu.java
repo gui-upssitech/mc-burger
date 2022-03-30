@@ -6,13 +6,20 @@ import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 
 public class ControlAjouterAlimentMenu {
 
-    // Methods
-    public static boolean verifierIdentificationProfilUtilisateur(ProfilUtilisateur profilUtilisateur, int numeroProfil) {
-        return ControlVerifierIdentification.verifierIdentification(profilUtilisateur, numeroProfil);
+    private final ControlVerifierIdentification controlVerifierIdentification;
+    private final Menu menu;
+
+    public ControlAjouterAlimentMenu(ControlVerifierIdentification controlVerifierIdentification) {
+        this.controlVerifierIdentification = controlVerifierIdentification;
+        this.menu = Menu.getInstance();
     }
 
-    public static void ajouterAliment(AlimentMenu typeAliment, String nom) {
-        Menu menu = Menu.getInstance();
+    // Methods
+    public boolean verifierIdentificationProfilUtilisateur(ProfilUtilisateur profilUtilisateur, int numeroProfil) {
+        return controlVerifierIdentification.verifierIdentification(profilUtilisateur, numeroProfil);
+    }
+
+    public void ajouterAliment(AlimentMenu typeAliment, String nom) {
         Aliment aliment = FabriqueAliment.creerAliment(typeAliment, nom);
 
         switch(typeAliment) {
@@ -22,7 +29,7 @@ public class ControlAjouterAlimentMenu {
         }
     }
 
-    public static String visualiserMenu() {
-        return Menu.getInstance().toString();
+    public String visualiserMenu() {
+        return menu.toString();
     }
 }

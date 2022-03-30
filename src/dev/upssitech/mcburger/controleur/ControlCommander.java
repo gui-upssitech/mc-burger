@@ -12,17 +12,23 @@ import java.util.List;
 
 public class ControlCommander {
 
-    // Methods
-    public static boolean verifierIdentification(int numClient) {
-        return ControlVerifierIdentification.verifierIdentification(ProfilUtilisateur.CLIENT, numClient);
+    private final ControlVerifierIdentification controlVerifierIdentification;
+
+    public ControlCommander(ControlVerifierIdentification controlVerifierIdentification) {
+        this.controlVerifierIdentification = controlVerifierIdentification;
     }
 
-    public static boolean verifierExistanceCarteBancaire(int numClient) {
+    // Methods
+    public boolean verifierIdentification(int numClient) {
+        return controlVerifierIdentification.verifierIdentification(ProfilUtilisateur.CLIENT, numClient);
+    }
+
+    public boolean verifierExistanceCarteBancaire(int numClient) {
         Client client = BDClient.getInstance().trouverClient(numClient);
         return client.verifierExistanceCarteBancaire();
     }
 
-    private static List<String> listeAlimentToString(AlimentMenu typeAliment) {
+    private List<String> listeAlimentToString(AlimentMenu typeAliment) {
         Menu menu;
         List<?> listeAliments;
         List<String> listeNomItems;
@@ -43,19 +49,19 @@ public class ControlCommander {
         return listeNomItems;
     }
 
-    public static List<String> donnerListeHamburger() {
+    public List<String> donnerListeHamburger() {
         return listeAlimentToString(AlimentMenu.HAMBURGER);
     }
 
-    public static List<String> donnerListeAccompagnement() {
+    public List<String> donnerListeAccompagnement() {
         return listeAlimentToString(AlimentMenu.ACCOMPAGNEMENT);
     }
 
-    public static List<String> donnerListeBoisson() {
+    public List<String> donnerListeBoisson() {
         return listeAlimentToString(AlimentMenu.BOISSON);
     }
 
-    public static int enregistrerCommande(int numClient, int numeroHamburger, int numeroAccompagnement, int numeroBoisson) {
+    public int enregistrerCommande(int numClient, int numeroHamburger, int numeroAccompagnement, int numeroBoisson) {
         Menu menu = Menu.getInstance();
 
         Hamburger hamburger = menu.choixHamburger(numeroHamburger);

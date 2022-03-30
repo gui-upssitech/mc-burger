@@ -5,12 +5,20 @@ import dev.upssitech.mcburger.modele.profil.Client;
 
 public class ControlEnregistrerCoordonneesBancaires {
 
+    private final ControlVerifierCoordonneesBancaires controlVerifierCoordonneesBancaires;
+    private final BDClient bdClient;
+
+    public ControlEnregistrerCoordonneesBancaires(ControlVerifierCoordonneesBancaires controlVerifierCoordonneesBancaires) {
+        this.controlVerifierCoordonneesBancaires = controlVerifierCoordonneesBancaires;
+        this.bdClient = BDClient.getInstance();
+    }
+
     // Methods
-    public static boolean enregistrerCoordonneesBancaires(int numeroClient, int numeroCarte, int dateCarte) {
-        boolean carteValide = ControlVerifierCoordonneesBancaires.verifierCoordonneesBancaires(numeroCarte, dateCarte);
+    public boolean enregistrerCoordonneesBancaires(int numeroClient, int numeroCarte, int dateCarte) {
+        boolean carteValide = controlVerifierCoordonneesBancaires.verifierCoordonneesBancaires(numeroCarte, dateCarte);
 
         if(carteValide) {
-            Client client = BDClient.getInstance().trouverClient(numeroClient);
+            Client client = bdClient.trouverClient(numeroClient);
             client.enregistrerCoordonneesBancaires(numeroCarte, dateCarte);
         }
 

@@ -19,6 +19,7 @@ public class PanCommander extends JPanel {
     private int numClient, numeroHamburger, numeroBoisson, numeroAccompagnement;
 
     private final PanEnregistrerCoordonneesBancaires panEnregistrerCoordonneesBancaires;
+    private final ControlCommander controlCommander;
 
     // Les elements graphiques :
     // Declaration et creation des polices d'ecritures
@@ -29,8 +30,9 @@ public class PanCommander extends JPanel {
     JComboBox<String> comboBoxHamburger, comboBoxAccompagnement, comboBoxBoisson;
 
     // Constructor
-    public PanCommander() {
+    public PanCommander(ControlCommander controlCommander) {
         this.panEnregistrerCoordonneesBancaires = new PanEnregistrerCoordonneesBancaires();
+        this.controlCommander = controlCommander;
         initialisation();
     }
 
@@ -80,14 +82,14 @@ public class PanCommander extends JPanel {
     public void commander( int numClient ) {
         this.numClient = numClient;
 
-        if(ControlCommander.verifierIdentification(numClient)) {
+        if(controlCommander.verifierIdentification(numClient)) {
             affichageMenu();
         }
 
     }
 
     private void affichageMenu() {
-        setComboBoxContent(comboBoxHamburger, ControlCommander.donnerListeHamburger());
+        setComboBoxContent(comboBoxHamburger, controlCommander.donnerListeHamburger());
         //setComboBoxContent(comboBoxAccompagnement, ControlCommander.donnerListeAccompagnement());
         //setComboBoxContent(comboBoxBoisson, ControlCommander.donnerListeBoisson());
     }
