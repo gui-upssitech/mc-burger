@@ -1,4 +1,4 @@
-package vuegraphique;
+package dev.upssitech.mcburger.vue.graphique;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,27 +11,28 @@ import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controleur.ControlVisualiserCommandeJour;
-import modele.BDCommande;
+import dev.upssitech.mcburger.controleur.ControlVisualiserCommandeJour;
+import dev.upssitech.mcburger.modele.commande.PropertyName;
+import dev.upssitech.mcburger.vue.console.Fichier;
 
 public class PanVisualiserCommandeJour extends JPanel implements PropertyChangeListener {
 	private static final long serialVersionUID = 1L;
 
 	// controleurs du cas
-	private ControlVisualiserCommandeJour controlVisualiserCommandeJour;
+	private final ControlVisualiserCommandeJour controlVisualiserCommandeJour;
 
 	// les attributs metiers
-	private static Map<String, String> mapCommandeJour = new HashMap<>();
+	private final static Map<String, String> mapCommandeJour = new HashMap<>();
 
 	// Les elements graphiques :
 	// polices d'ecritures
-	private Font policeTitre = new Font("Calibri", Font.BOLD, 24);
-	private Font policeParagraphe = new Font("Calibri", Font.HANGING_BASELINE, 16);
+	private final Font policeTitre = new Font("Calibri", Font.BOLD, 24);
+	private final Font policeParagraphe = new Font("Calibri", Font.ITALIC, 16);
 
 	// Mise en page : les Box
-	private Box boxMiseEnpage = Box.createVerticalBox();
-	private Box boxCommandeJour = Box.createVerticalBox();
-	private Box boxCommandes = Box.createVerticalBox();
+	private final Box boxMiseEnpage = Box.createVerticalBox();
+	private final Box boxCommandeJour = Box.createVerticalBox();
+	private final Box boxCommandes = Box.createVerticalBox();
 
 	private FrameCuisinier frame;
 
@@ -62,9 +63,29 @@ public class PanVisualiserCommandeJour extends JPanel implements PropertyChangeL
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
-		// TODO Auto-generated method stub
+	public void propertyChange(PropertyChangeEvent evt) {
+		PropertyName propertyName = PropertyName.valueOf(evt.getPropertyName());
 
+		if(propertyName == PropertyName.ENREGISTRER_COMMANDE) {
+			String[] commandeDesc = (String[]) evt.getNewValue();
+			String numeroCommande = commandeDesc[0],
+					nomHamburger = commandeDesc[1],
+					nomAccompagnement = commandeDesc[2],
+					nomBoisson = commandeDesc[3];
+
+			String texteCommandeJour = ("Commande no " + numeroCommande + " : " + nomHamburger + ", "
+					+ nomAccompagnement + ", " + nomBoisson);
+			JLabel label = new JLabel(texteCommandeJour);
+			label.setFont(policeParagraphe);
+			PanVisualiserCommandeJour.mapCommandeJour.put(numeroCommande, texteCommandeJour);
+			boxCommandes.add(label);
+			actualiserPanel();
+		}
+		else if(propertyName == PropertyName.VIDER_COMMANDE_JOUR) {
+			PanVisualiserCommandeJour.mapCommandeJour.clear();
+			boxCommandes.removeAll();
+			actualiserPanel();
+		}
 	}
 
 	private void actualiserPanel() {
@@ -86,6 +107,12 @@ public class PanVisualiserCommandeJour extends JPanel implements PropertyChangeL
 
 	public void visualiserCommandeJour(int numCuisinier) {
 		initialiserPanel();
+
+		boolean cuisinierIdentifie = controlVisualiserCommandeJour.verifierIdentificationCuisinier(numCuisinier);
+		if(cuisinierIdentifie) {
+			controlVisualiserCommandeJour.setListener(PropertyName.ENREGISTRER_COMMANDE.toString(), this);
+			controlVisualiserCommandeJour.setListener(PropertyName.VIDER_COMMANDE_JOUR.toString(), this);
+		}
 	}
 
 }

@@ -1,4 +1,6 @@
-package vuegraphique;
+package dev.upssitech.mcburger.vue.graphique;
+
+import dev.upssitech.mcburger.controleur.ControlVisualiserCommandeJour;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -12,7 +14,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import controleur.ControlVisualiserCommandeJour;
 
 public class FrameCuisinier extends JFrame {
 	private static final String COMMANDE_JOUR = "COMMANDE JOUR";
@@ -29,9 +30,9 @@ public class FrameCuisinier extends JFrame {
 	private CardLayout cartes = new CardLayout();
 
 	// Les panels
-	private JPanel panContents = new JPanel(cartes);
-	private JPanel panAccueil = new JPanel();
-	private PanVisualiserCommandeJour panVisualisationCommandeJour;
+	private final JPanel panContents = new JPanel(cartes);
+	private final JPanel panAccueil = new JPanel();
+	private final PanVisualiserCommandeJour panVisualisationCommandeJour;
 
 	public FrameCuisinier(int numPersonnel, ControlVisualiserCommandeJour controlVisualiserCommandeJour) {
 		// intitialisation des attributs metiers
@@ -77,7 +78,7 @@ public class FrameCuisinier extends JFrame {
 	}
 
 	public void initialisationMenu() {
-		MenuItem visualiserCommandeJour = new MenuItem("Commandes de la journée");
+		MenuItem visualiserCommandeJour = new MenuItem("Commandes de la journï¿½e");
 		visualiserCommandeJour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				panVisualisationCommandeJour.visualiserCommandeJour(numPersonnel);

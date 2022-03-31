@@ -1,4 +1,4 @@
-package vueconsole;
+package dev.upssitech.mcburger.vue.console;
 
 import java.io.File;
 import java.io.FileWriter;

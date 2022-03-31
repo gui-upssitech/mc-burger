@@ -23,12 +23,12 @@ public class BDCommande {
 
     // Attributes
     private final HashMap<Integer, Commande> mapCommandes;
-    private final PropertyChangeSupport observable;
+    private final PropertyChangeSupport support;
 
     // Constructor
     private BDCommande() {
         mapCommandes = new HashMap<>();
-        observable = new PropertyChangeSupport(this);
+        support = new PropertyChangeSupport(this);
     }
 
     // Methods
@@ -37,14 +37,28 @@ public class BDCommande {
         int commandeId = commande.getNumeroCommandeAttribuee();
         mapCommandes.put(commandeId, commande);
 
-        String[] liste = { "" + commandeId, commande.getHamburger().toString(), commande.getAccompagnement().toString(), commande.getBoisson().toString() };
-        observable.firePropertyChange(PropertyName.ENREGISTRER_COMMANDE.toString(), null, liste);
+        // Observable pattern implementation
+        String[] liste = { "" + commandeId, commande.getHamburger().getNom(), commande.getAccompagnement().getNom(), commande.getBoisson().getNom() };
+        support.firePropertyChange(PropertyName.ENREGISTRER_COMMANDE.toString(), null, liste);
 
         return commandeId;
     }
 
-    public void addListener(PropertyChangeListener observer) {
-        observable.addPropertyChangeListener(observer);
+    public Commande supprimerCommande(int numCommande) {
+        Commande commande = mapCommandes.get(numCommande);
+        mapCommandes.remove(numCommande);
+
+        return commande;
+    }
+
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        support.addPropertyChangeListener(propertyName, listener);
+    }
+
+    public void viderCommandeJour() {
+        mapCommandes.clear();
+        Commande.initialiserNumeroCommande();
+        support.firePropertyChange(PropertyName.VIDER_COMMANDE_JOUR.toString(), null, null);
     }
 
     @Override

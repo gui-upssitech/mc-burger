@@ -2,6 +2,7 @@ package dev.upssitech.mcburger.tests.console;
 
 
 import dev.upssitech.mcburger.controleur.*;
+import dev.upssitech.mcburger.modele.ThreadViderCommandeJour;
 import dev.upssitech.mcburger.modele.aliment.AlimentMenu;
 import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
 import dev.upssitech.mcburger.vue.console.BoundaryCommander;
@@ -50,13 +51,16 @@ public class TestCasVisualiserCommandeJour {
 				boundaryEnregistrerCoordonneesBancaires);
 
 		// creation pour la visualisation de la commande
-		BoundaryVisualiserCommandeJour boundaryVisualiserCommandeJour = new BoundaryVisualiserCommandeJour();
-//		boundaryVisualiserCommandeJour.visualiserCommandeJour(numCuisinier);
-//		boundaryVisualiserCommandeJour.visualiserCommandeJour(numCuisinier2);
+		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
+		ControlVisualiserCommandeJour controlVisualiserCommandeJour = new ControlVisualiserCommandeJour(controlVerifierIdentification);
+
+		BoundaryVisualiserCommandeJour boundaryVisualiserCommandeJour = new BoundaryVisualiserCommandeJour(controlVisualiserCommandeJour);
+		boundaryVisualiserCommandeJour.visualiserCommandeJour(numCuisinier);
+		boundaryVisualiserCommandeJour.visualiserCommandeJour(numCuisinier2);
 
 		// Thread
-//		ThreadViderCommandeJour threadViderCommande = new ThreadViderCommandeJour();
-//		threadViderCommande.start();
+		ThreadViderCommandeJour threadViderCommande = new ThreadViderCommandeJour();
+		threadViderCommande.start();
 
 		//Lancement du test
 		System.out.println("\nCommande client 1");

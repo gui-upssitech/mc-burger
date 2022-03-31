@@ -1,18 +1,11 @@
-package testgraphique;
+package dev.upssitech.mcburger.tests.graphique;
 
-import controleur.ControlAjouterAlimentMenu;
-import controleur.ControlCommander;
-import controleur.ControlCreerProfil;
-import controleur.ControlEnregistrerCoordonneesBancaires;
-import controleur.ControlSIdentifier;
-import controleur.ControlVerifierCoordonneesBancaires;
-import controleur.ControlVerifierIdentification;
-import controleur.ControlVisualiserCommandeJour;
-import modele.AlimentMenu;
-import modele.ProfilUtilisateur;
-import modele.ThreadViderCommandeJour;
-import vuegraphique.FrameClient;
-import vuegraphique.FrameCuisinier;
+import dev.upssitech.mcburger.controleur.*;
+import dev.upssitech.mcburger.modele.ThreadViderCommandeJour;
+import dev.upssitech.mcburger.modele.aliment.AlimentMenu;
+import dev.upssitech.mcburger.modele.profil.ProfilUtilisateur;
+import dev.upssitech.mcburger.vue.graphique.FrameClient;
+import dev.upssitech.mcburger.vue.graphique.FrameCuisinier;
 
 public class TestEcranCuisinier {
     public static void main(String[] args) {
@@ -29,23 +22,23 @@ public class TestEcranCuisinier {
 		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.BOISSON, "coca");
 		controlAjouterAlimentCarte.ajouterAliment(AlimentMenu.BOISSON, "orangeBubbles");
 
-		//Création et connexion des profils clients
+		//Crï¿½ation et connexion des profils clients
 		controlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Dupond", "Hector", "cdh");
 		int numClient = controlSIdentifier.sIdentifier(ProfilUtilisateur.CLIENT, "Hector.Dupond", "cdh");
 
 		controlCreerProfil.creerProfil(ProfilUtilisateur.CLIENT, "Durand", "Jacques", "cdj");
 		int numClient2 = controlSIdentifier.sIdentifier(ProfilUtilisateur.CLIENT, "Jacques.Durand", "cdj");
 		
-		//Création et connexion des profils cuisiniers
-        controlCreerProfil.creerProfil(ProfilUtilisateur.PERSONNEL, "Martin",
+		//Crï¿½ation et connexion des profils cuisiniers
+        controlCreerProfil.creerProfil(ProfilUtilisateur.PERSONNEl, "Martin",
                 "Stephane", "pms");
         int numCuisinier = controlSIdentifier.sIdentifier(
-                ProfilUtilisateur.PERSONNEL, "Stephane.Martin", "pms");
+                ProfilUtilisateur.PERSONNEl, "Stephane.Martin", "pms");
         
-        controlCreerProfil.creerProfil(ProfilUtilisateur.PERSONNEL, "Bernard",
+        controlCreerProfil.creerProfil(ProfilUtilisateur.PERSONNEl, "Bernard",
                 "Christophe", "pbc");
         int numCuisinier2 = controlSIdentifier.sIdentifier(
-                ProfilUtilisateur.PERSONNEL, "Christophe.Bernard", "pbc");
+                ProfilUtilisateur.PERSONNEl, "Christophe.Bernard", "pbc");
 
 		// Initialisation controleur du cas & cas Inclus/etendu
 		ControlVerifierIdentification controlVerifierIdentification = new ControlVerifierIdentification();
@@ -55,10 +48,8 @@ public class TestEcranCuisinier {
 
 		// cas commander
 		ControlCommander controlCommande = new ControlCommander(controlVerifierIdentification);
-		new FrameClient(numClient, controlCommande,
-				controlEnregistrerCoordonneesBancaires);
-		new FrameClient(numClient2, controlCommande,
-				controlEnregistrerCoordonneesBancaires);
+		new FrameClient(numClient);
+		new FrameClient(numClient2);
         
       
         // cas visualisation commande du jour

@@ -139,8 +139,8 @@ public class PanCommander extends JPanel implements PanEnregistrerCoordonneesBan
 
     private void enregistrerCommande(boolean carteRenseignee) {
         if (carteRenseignee) {
-            int numCommande = controlCommander.enregistrerCommande(numClient, numeroHamburger,
-                    numeroAccompagnement, numeroBoisson);
+            int numCommande = controlCommander.enregistrerCommande(numClient, numeroHamburger-1,
+                    numeroAccompagnement-1, numeroBoisson-1);
             numeroCommande.setText("Votre numero est : " + numCommande);
         }
         this.setVisible(true);
