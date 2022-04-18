@@ -61,4 +61,13 @@ public class Commande {
                 ", numeroCommandeAttribuee=" + numeroCommandeAttribuee +
                 ']';
     }
+
+    public String[] toBoundaryString() {
+        return new String[] {
+                ""+numeroCommandeAttribuee,
+                hamburger.getNom(),
+                accompagnement.getNom(),
+                boisson.getNom()
+        };
+    }
 }
